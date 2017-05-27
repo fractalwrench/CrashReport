@@ -1,49 +1,21 @@
 package com.fractalwrench.crashreport;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import android.content.Context;
 
-public final class CrashReporter implements Thread.UncaughtExceptionHandler {
+public class CrashReporter {
 
-    private final List<ErrorCallback> callbacks = new ArrayList<>();
+    private static Client instance;
 
-    private CrashReporter(List<ErrorCallback> callbacks) {
-        Thread.setDefaultUncaughtExceptionHandler(this);
-        this.callbacks.addAll(callbacks);
+    public static Client initialise(Context context) {
+        if (instance == null) {
+            instance = new Client.Builder().addErrorCallback(new UiDisplayErrorCallback(context))
+                                           .build();
+        }
+        return instance;
     }
 
-    public List<ErrorCallback> getErrorCallbacks() {
-        return Collections.unmodifiableList(callbacks);
-    }
-
-    @Override
-    public void uncaughtException(Thread t, Throwable e) {
-        for (ErrorCallback callback : callbacks) {
-            callback.onError(t, e);
-        }
-    }
-
-
-    public static class Builder { // TODO add
-
-        private final List<ErrorCallback> errorCallbacks;
-
-        public Builder() {
-            this.errorCallbacks = new ArrayList<>();
-        }
-
-        public Builder addErrorCallback(ErrorCallback errorCallback) {
-            if (errorCallback == null) {
-                throw new IllegalArgumentException("Cannot be null");
-            }
-            errorCallbacks.add(errorCallback);
-            return this;
-        }
-
-        public CrashReporter build() {
-            return new CrashReporter(errorCallbacks);
-        }
+    private CrashReporter() throws IllegalAccessException {
+        throw new IllegalAccessException();
     }
 
 }
