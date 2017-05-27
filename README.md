@@ -57,7 +57,7 @@ CrashReporter.initialiseWithErrorHandler(new ErrorHandler() {
     }
 });
 ```
-This allows for custom behaviour, such as remotely logging errors via the network to a web server.
+This allows for custom behaviour, such as remotely logging errors via the network to a web server, or displaying custom UI to the user depending on what exception was thrown.
 
 ### Tests
 The following command will execute the library's unit tests: ```./gradlew test```
