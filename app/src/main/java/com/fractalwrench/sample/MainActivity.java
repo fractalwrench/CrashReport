@@ -5,6 +5,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 
+/**
+ * Throws an exception from different threads to allow manual testing of the CrashReport library
+ */
 public class MainActivity extends Activity implements View.OnClickListener {
 
     private View bgThreadBtn;

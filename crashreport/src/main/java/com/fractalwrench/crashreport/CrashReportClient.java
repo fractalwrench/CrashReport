@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-final class CrashReportClient implements Thread.UncaughtExceptionHandler {
+public final class CrashReportClient implements Thread.UncaughtExceptionHandler {
 
     private final List<ErrorHandler> callbacks = new ArrayList<>();
 
@@ -19,7 +19,7 @@ final class CrashReportClient implements Thread.UncaughtExceptionHandler {
 
     @Override
     public void uncaughtException(Thread t, Throwable e) {
-        for (ErrorHandler callback : callbacks) {
+        for (ErrorHandler callback : callbacks) { // allows multiple error handlers in future
             callback.onError(t, e);
         }
     }

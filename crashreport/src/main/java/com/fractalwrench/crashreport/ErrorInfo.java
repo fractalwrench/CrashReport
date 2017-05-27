@@ -1,16 +1,15 @@
 package com.fractalwrench.crashreport;
 
 import java.io.PrintWriter;
-import java.io.Serializable;
 import java.io.StringWriter;
 
-public class ErrorInfo implements Serializable {
+class ErrorInfo {
 
     private final String canonicalName;
     private final String message;
     private final String stackTrace;
 
-    public ErrorInfo(Throwable t) {
+    ErrorInfo(Throwable t) {
         canonicalName = t.getClass()
                          .getCanonicalName();
         message = t.getMessage();
@@ -23,15 +22,15 @@ public class ErrorInfo implements Serializable {
         return writer.toString();
     }
 
-    public String getCanonicalName() {
+    String getCanonicalName() {
         return canonicalName;
     }
 
-    public String getMessage() {
+    String getMessage() {
         return message;
     }
 
-    public String getStackTrace() {
+    String getStackTrace() {
         return stackTrace;
     }
 

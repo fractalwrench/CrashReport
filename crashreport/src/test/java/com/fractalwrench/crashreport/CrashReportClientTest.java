@@ -29,7 +29,7 @@ public class CrashReportClientTest {
     @Test(expected = UnsupportedOperationException.class)
     public void preventCallbackMutation() throws Exception {
         CrashReportClient reporter = builder.addErrorCallback(DUMMY_INTERCEPTOR).build();
-        assertEquals(1, reporter.getErrorCallbacks().size()); // default + custom impl = 2
+        assertEquals(1, reporter.getErrorCallbacks().size());
         reporter.getErrorCallbacks().remove(0); // cannot remove from immutable obj
     }
 }

@@ -2,6 +2,9 @@ package com.fractalwrench.crashreport;
 
 import android.util.Log;
 
+/**
+ * Writes errors directly to Logcat.
+ */
 class LogcatErrorHandler implements ErrorHandler {
 
     @Override
