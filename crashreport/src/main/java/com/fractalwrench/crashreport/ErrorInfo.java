@@ -11,7 +11,8 @@ public class ErrorInfo implements Serializable {
     private final String stackTrace;
 
     public ErrorInfo(Throwable t) {
-        canonicalName = t.getClass().getCanonicalName();
+        canonicalName = t.getClass()
+                         .getCanonicalName();
         message = t.getMessage();
         stackTrace = getStackTrace(t);
     }
@@ -32,5 +33,11 @@ public class ErrorInfo implements Serializable {
 
     public String getStackTrace() {
         return stackTrace;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Crash Report:\nException Class = %s\nMessage = %s\n\nStackTrace = %s",
+                             canonicalName, message, stackTrace);
     }
 }

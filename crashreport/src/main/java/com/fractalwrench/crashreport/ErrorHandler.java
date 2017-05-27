@@ -1,6 +1,6 @@
 package com.fractalwrench.crashreport;
 
-interface ErrorCallback {
+interface ErrorHandler {
 
     void onError(Thread thread, Throwable error);
 

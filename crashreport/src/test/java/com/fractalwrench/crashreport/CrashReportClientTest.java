@@ -7,7 +7,7 @@ import static junit.framework.Assert.assertEquals;
 
 public class CrashReportClientTest {
 
-    private static final ErrorCallback DUMMY_INTERCEPTOR = new ErrorCallback() {
+    private static final ErrorHandler DUMMY_INTERCEPTOR = new ErrorHandler() {
         @Override
         public void onError(Thread thread, Throwable error) {
 
