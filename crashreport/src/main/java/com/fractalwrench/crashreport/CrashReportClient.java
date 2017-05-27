@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-final class Client implements Thread.UncaughtExceptionHandler {
+final class CrashReportClient implements Thread.UncaughtExceptionHandler {
 
     private final List<ErrorCallback> callbacks = new ArrayList<>();
 
-    private Client(List<ErrorCallback> callbacks) {
+    private CrashReportClient(List<ErrorCallback> callbacks) {
         Thread.setDefaultUncaughtExceptionHandler(this);
         this.callbacks.addAll(callbacks);
     }
@@ -40,8 +40,8 @@ final class Client implements Thread.UncaughtExceptionHandler {
             return this;
         }
 
-        Client build() {
-            return new Client(errorCallbacks);
+        CrashReportClient build() {
+            return new CrashReportClient(errorCallbacks);
         }
     }
 

@@ -1,9 +1,10 @@
 package com.fractalwrench.crashreport;
 
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.io.StringWriter;
 
-public class ErrorInfo {
+public class ErrorInfo implements Serializable {
 
     private final String canonicalName;
     private final String message;

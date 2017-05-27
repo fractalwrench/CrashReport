@@ -6,7 +6,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.fractalwrench.crashreports"
+        applicationId "com.fractalwrench.sample"
         minSdkVersion 9
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

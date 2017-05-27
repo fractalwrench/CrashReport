@@ -1,4 +1,4 @@
-package com.fractalwrench.crashreports;
+package com.fractalwrench.sample;
 
 import android.app.Application;
 
