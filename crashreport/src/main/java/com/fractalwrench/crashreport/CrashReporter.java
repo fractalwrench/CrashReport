@@ -6,43 +6,43 @@ import java.util.List;
 
 public final class CrashReporter implements Thread.UncaughtExceptionHandler {
 
-    private final List<ErrorInterceptor> interceptors= new ArrayList<>();
+    private final List<ErrorCallback> callbacks = new ArrayList<>();
 
-    private CrashReporter(List<ErrorInterceptor> interceptors) {
+    private CrashReporter(List<ErrorCallback> callbacks) {
         Thread.setDefaultUncaughtExceptionHandler(this);
-        this.interceptors.addAll(interceptors);
+        this.callbacks.addAll(callbacks);
     }
 
-    public List<ErrorInterceptor> getInterceptors() {
-        return Collections.unmodifiableList(interceptors);
+    public List<ErrorCallback> getErrorCallbacks() {
+        return Collections.unmodifiableList(callbacks);
     }
 
     @Override
     public void uncaughtException(Thread t, Throwable e) {
-        for (ErrorInterceptor interceptor : interceptors) {
-            interceptor.onError(t, e);
+        for (ErrorCallback callback : callbacks) {
+            callback.onError(t, e);
         }
     }
 
 
     public static class Builder { // TODO add
 
-        private final List<ErrorInterceptor> interceptors;
+        private final List<ErrorCallback> errorCallbacks;
 
         public Builder() {
-            this.interceptors = new ArrayList<>();
+            this.errorCallbacks = new ArrayList<>();
         }
 
-        public Builder addErrorInterceptor(ErrorInterceptor errorInterceptor) {
-            if (errorInterceptor == null) {
+        public Builder addErrorCallback(ErrorCallback errorCallback) {
+            if (errorCallback == null) {
                 throw new IllegalArgumentException("Cannot be null");
             }
-            interceptors.add(errorInterceptor);
+            errorCallbacks.add(errorCallback);
             return this;
         }
 
         public CrashReporter build() {
-            return new CrashReporter(interceptors);
+            return new CrashReporter(errorCallbacks);
         }
     }
 
