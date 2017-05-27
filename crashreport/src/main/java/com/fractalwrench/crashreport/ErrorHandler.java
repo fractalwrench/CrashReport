@@ -3,7 +3,7 @@ package com.fractalwrench.crashreport;
 /**
  * Handles an uncaught exception thrown by an Android application.
  */
-interface ErrorHandler {
+public interface ErrorHandler {
 
     /**
      * Called whenever an uncaught exception is thrown
